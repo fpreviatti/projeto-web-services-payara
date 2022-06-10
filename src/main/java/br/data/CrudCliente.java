@@ -4,12 +4,17 @@
  */
 package br.data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  *
  * @author sacarolhas
  */
 public class CrudCliente {
+    
+    static List<Cliente> clientes = new ArrayList<>();
     
     public void cadastrarCliente(){
        
@@ -22,6 +27,11 @@ public class CrudCliente {
         cliente.setCodigo(1);
         cliente.setNome("Jose");
         
+        clientes.add(cliente);
+    }
+    
+    public List<Cliente> getClientes(){
+        return clientes;
     }
     
 }
