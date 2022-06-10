@@ -1,0 +1,6 @@
+br\data\Cidade.class
+br\JakartaRestConfiguration.class
+br\data\CrudCliente.class
+br\resources\JakartaEE9Resource.class
+br\data\Cliente.class
+br\rs\RestClient.class
