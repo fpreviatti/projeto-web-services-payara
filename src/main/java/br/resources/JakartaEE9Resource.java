@@ -4,6 +4,7 @@ import br.data.Cidade;
 import br.data.Cliente;
 import br.data.CrudCliente;
 import br.rs.RestClient;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -56,6 +57,7 @@ public class JakartaEE9Resource {
     
     @GET
     @Path("/clientes")
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Cliente> getClientes(){
         RestClient rs = new RestClient();
         
@@ -65,7 +67,6 @@ public class JakartaEE9Resource {
  
     }
 
-    
     @GET
     @Path("/clientes/{codigo}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -85,5 +86,23 @@ public class JakartaEE9Resource {
         }
         return null;
     }
-
+    
+    @DELETE
+    @Path("/clientes/{codigo}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void deleteClientePorCodigo(@PathParam ("codigo") int codigo){
+        RestClient rs = new RestClient();
+        
+        CrudCliente cr = new CrudCliente();
+        
+        List<Cliente> clientes = cr.getClientes();
+        
+        clientes = cr.getClientes();
+        
+        for(int i=0; i<clientes.size();i++){
+            if(clientes.get(i).getCodigo()==codigo){
+                clientes.remove(i);
+            }
+        }
+    }
 }
