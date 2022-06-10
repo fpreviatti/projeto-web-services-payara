@@ -3,13 +3,16 @@ package br.resources;
 import br.data.Cidade;
 import br.data.Cliente;
 import br.data.CrudCliente;
+import br.ejb.EJBCliente;
 import br.rs.RestClient;
+import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.ArrayList;
@@ -34,25 +37,35 @@ public class JakartaEE9Resource {
     
     @GET
     @Path("/cidades")
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Cidade> getCidades(){
         RestClient rs = new RestClient();
         
         List<Cidade> cidades = new ArrayList<>();
         
         return rs.getCidades();
-        
-        
+
     }
     
     @POST
     @Path("/cliente")
-    public void cadastrarCliente(){
+    public void cadastrarCliente(@QueryParam ("codcidade")int codCidade, @QueryParam ("nome") String nome){
         RestClient rs = new RestClient();
         
-        CrudCliente cr = new CrudCliente();
+        List<Cidade> cidades = rs.getCidades();
+
+        EJBCliente ejbCliente = new EJBCliente();
         
-        cr.cadastrarCliente();
- 
+        Cliente cliente = new Cliente();
+        cliente.setNome(nome);
+        
+        for(int i=0; i<cidades.size();i++){
+            if(cidades.get(i).getCodigo()==codCidade){
+                cliente.setCidade(cidades.get(i));
+                ejbCliente.cadastrarCliente(cliente);
+            }
+        }
+  
     }
     
     @GET

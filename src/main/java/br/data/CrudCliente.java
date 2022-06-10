@@ -16,18 +16,12 @@ public class CrudCliente {
     
     static List<Cliente> clientes = new ArrayList<>();
     
-    public void cadastrarCliente(){
-       
-        Cidade cidade = new Cidade();
-        cidade.setCodigo(1);
-        cidade.setNome("Curitiba");
-        
-        Cliente cliente = new Cliente();
-        cliente.setCidade(cidade);
-        cliente.setCodigo(1);
-        cliente.setNome("Jose");
-        
+    static int codCliente=1;
+    
+    public void cadastrarCliente(Cliente cliente){  
+        cliente.setCodigo(codCliente);
         clientes.add(cliente);
+        codCliente = codCliente+1;
     }
     
     public List<Cliente> getClientes(){
