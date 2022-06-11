@@ -20,7 +20,7 @@
             
             <h:outputText value="Cidade: "/>
             
-            <h:selectOneMenu value="#{jsfCadastroClientes.codigo}">
+            <h:selectOneMenu value="#{jsfCadastroClientes.codigoCidade}">
                 <f:selectItems value="#{jsfCadastroClientes.cidades}" var="cidade" itemLabel="#{cidade.nome}" itemValue="#{cidade.codigo}"/>
             </h:selectOneMenu>
             
@@ -50,7 +50,7 @@
                 <h:column>
                     
                     <h:commandButton value ="Excluir" action="#{jsfCadastroClientes.excluirCliente()}">
-                       <f:setPropertyActionListener target="#{jsfCadastroClientes.codigo}" value="#{lista.codigo}" />     
+                       <f:setPropertyActionListener target="#{jsfCadastroClientes.codigoCliente}" value="#{lista.codigo}" />     
                     </h:commandButton>
                     
                 </h:column>

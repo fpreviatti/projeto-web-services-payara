@@ -28,7 +28,8 @@ public class JsfCadastroClientes {
     }
    
     private String nome;
-    private String codigo;
+    private String codigoCidade;
+    private String codigoCliente;
     private Cidade cidade;
     private List<Cidade> cidades;
     private String nomeCidade;
@@ -60,12 +61,20 @@ public class JsfCadastroClientes {
         this.nomeCidade = nomeCidade;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public String getCodigoCidade() {
+        return codigoCidade;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCodigoCidade(String codigoCidade) {
+        this.codigoCidade = codigoCidade;
+    }
+
+    public String getCodigoCliente() {
+        return codigoCliente;
+    }
+
+    public void setCodigoCliente(String codigoCliente) {
+        this.codigoCliente = codigoCliente;
     }
 
     public Cidade getCidade() {
@@ -93,11 +102,15 @@ public class JsfCadastroClientes {
     }
 
     public void cadastrarCliente(){
-        jak.cadastrarCliente(Integer.parseInt(codigo), nome);
+        jak.cadastrarCliente(Integer.parseInt(codigoCidade), nome);
     }
     
     public void excluirCliente(){
-        jak.deleteClientePorCodigo(Integer.parseInt(codigo));
+        jak.deleteClientePorCodigo(Integer.parseInt(codigoCliente));
+    }
+    
+    public void alterarCliente(){
+        jak.alterarCliente(0, 0, nome);
     }
 
 }
