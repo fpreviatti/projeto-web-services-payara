@@ -12,6 +12,7 @@ import br.rs.RestClient;
 import jakarta.ejb.EJB;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.component.html.HtmlDataTable;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ import java.util.List;
 @Named(value = "jsfCadastroClientes")
 @RequestScoped
 public class JsfCadastroClientes {
-   
+   JakartaEE9Resource jak = new JakartaEE9Resource();
     public JsfCadastroClientes() {
            
     }
@@ -31,6 +32,25 @@ public class JsfCadastroClientes {
     private Cidade cidade;
     private List<Cidade> cidades;
     private String nomeCidade;
+    private List<Cliente> clientes;
+    private HtmlDataTable dataTable;
+
+    public HtmlDataTable getDataTable() {
+        return dataTable;
+    }
+
+    public void setDataTable(HtmlDataTable dataTable) {
+        this.dataTable = dataTable;
+    }
+
+    public List<Cliente> getClientes() {
+        clientes = jak.getClientes();
+        return clientes;
+    }
+
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
+    }
 
     public String getNomeCidade() {
         return nomeCidade;
@@ -72,31 +92,12 @@ public class JsfCadastroClientes {
         return cidades;
     }
 
-    public EJBCliente getEjbCliente() {
-        return ejbCliente;
-    }
-
-    public void setEjbCliente(EJBCliente ejbCliente) {
-        this.ejbCliente = ejbCliente;
-    }
-
-@EJB
-    EJBCliente ejbCliente;
-
     public void cadastrarCliente(){
-        
-        JakartaEE9Resource jak = new JakartaEE9Resource();
         jak.cadastrarCliente(Integer.parseInt(codigo), nome);
-        
-//        System.out.println("Cidade:" +codigo);
-//        System.out.println("Nome: " +nome);
-//        Cliente cliente = new Cliente();
-//        Cidade cidade = new Cidade();
-//        cidade.setNome("Aleluia");
-//        cidade.setCodigo(Integer.parseInt(codigo));
-//        cliente.setNome(nome);
-//        cliente.setCidade(cidade);
-//        ejbCliente.cadastrarCliente(cliente);  
+    }
+    
+    public void excluirCliente(){
+        jak.deleteClientePorCodigo(Integer.parseInt(codigo));
     }
 
 }

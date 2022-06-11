@@ -27,6 +27,35 @@
             <br></br>
 
             <h:commandButton value ="Cadastrar" action="#{jsfCadastroClientes.cadastrarCliente()}"/>
+            
+            <br></br>
+            <br></br>
+            
+            ====== Usuários cadastrados ======
+
+            <h:dataTable binding="#{jsfCadastroClientes.dataTable}" border="1"
+                         value="#{jsfCadastroClientes.clientes}" var="lista">
+
+                <h:column>
+                    #{lista.codigo}
+                </h:column>
+
+                <h:column>
+                    #{lista.nome}
+                </h:column>
+                <h:column>
+                    #{lista.cidade.nome}
+                </h:column>
+                
+                <h:column>
+                    
+                    <h:commandButton value ="Excluir" action="#{jsfCadastroClientes.excluirCliente()}">
+                       <f:setPropertyActionListener target="#{jsfCadastroClientes.codigo}" value="#{lista.codigo}" />     
+                    </h:commandButton>
+                    
+                </h:column>
+
+            </h:dataTable>
 
         </h:form>
 
