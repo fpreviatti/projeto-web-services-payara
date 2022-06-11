@@ -24,6 +24,18 @@ public class CrudCliente {
         codCliente = codCliente+1;
     }
     
+    public void alterarCliente(Cliente cliente){
+        
+        for(int i=0; i<clientes.size();i++){
+            if(clientes.get(i).getCodigo()==cliente.getCodigo()){
+                clientes.get(i).setCidade(cliente.getCidade());
+                clientes.get(i).setNome(cliente.getNome());
+                break;
+            }
+        }
+  
+    }
+    
     public List<Cliente> getClientes(){
         return clientes;
     }

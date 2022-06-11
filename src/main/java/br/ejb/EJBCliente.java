@@ -7,6 +7,7 @@ package br.ejb;
 import br.data.Cliente;
 import br.data.CrudCliente;
 import jakarta.ejb.Stateless;
+import java.util.List;
 
 /**
  *
@@ -14,10 +15,18 @@ import jakarta.ejb.Stateless;
  */
 @Stateless
 public class EJBCliente {
-    
+    CrudCliente crud = new CrudCliente();
     public void cadastrarCliente(Cliente cliente){
-        CrudCliente crud = new CrudCliente();
         crud.cadastrarCliente(cliente);
+    }
+    
+    public void alterarCliente(Cliente cliente){
+        crud.alterarCliente(cliente);
+    }
+    
+    public List<Cliente> getClientes(){
+        
+        return crud.getClientes();
     }
 
 }
