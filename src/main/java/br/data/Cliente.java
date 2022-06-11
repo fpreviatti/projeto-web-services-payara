@@ -41,6 +41,4 @@ public class Cliente {
         this.cidade = cidade;
     }
 
-    
-
 }

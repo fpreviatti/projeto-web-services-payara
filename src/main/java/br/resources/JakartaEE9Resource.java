@@ -50,7 +50,7 @@ public class JakartaEE9Resource {
     public void cadastrarCliente(@QueryParam("codcidade") int codCidade, @QueryParam("nome") String nome) {
         RestClient rs = new RestClient();
 
-        List<Cidade> cidades = rs.getCidades();
+        ArrayList<Cidade> cidades = rs.getCidades();
 
         EJBCliente ejbCliente = new EJBCliente();
 
