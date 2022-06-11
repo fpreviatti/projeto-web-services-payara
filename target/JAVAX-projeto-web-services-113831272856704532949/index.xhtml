@@ -22,6 +22,8 @@
             
             <h:selectOneMenu value="#{jsfCadastroClientes.codigoCidade}">
                 <f:selectItems value="#{jsfCadastroClientes.cidades}" var="cidade" itemLabel="#{cidade.nome}" itemValue="#{cidade.codigo}"/>
+                
+                        
             </h:selectOneMenu>
             
             <br></br>
@@ -31,31 +33,77 @@
             <br></br>
             <br></br>
             
-            ====== Usuários cadastrados ======
+            ====== Clientes cadastrados ======
 
             <h:dataTable binding="#{jsfCadastroClientes.dataTable}" border="1"
                          value="#{jsfCadastroClientes.clientes}" var="lista">
+                
 
                 <h:column>
-                    #{lista.codigo}
-                </h:column>
-
-                <h:column>
-                    #{lista.nome}
-                </h:column>
-                <h:column>
-                    #{lista.cidade.nome}
+                    
+                    <f:facet name="header">
+                    <h:outputText value="Código do cliente" />
+                    </f:facet>
+                    <h:outputText value="#{lista.codigo}"/>
+      
                 </h:column>
                 
                 <h:column>
                     
+                    <f:facet name="header">
+                    <h:outputText value="Nome do cliente" />
+                    </f:facet>
+                    <h:outputText value="#{lista.nome}"/>
+      
+                </h:column>
+                
+                <h:column>
+                    
+                    <f:facet name="header">
+                    <h:outputText value="Cidade" />
+                    </f:facet>
+                    <h:outputText value="#{lista.cidade.nome}"/>
+      
+                </h:column>
+                
+                <h:column>
+                    
+                    <f:facet name="header">
+                    <h:outputText value="Ação" />
+                    </f:facet>
                     <h:commandButton value ="Excluir" action="#{jsfCadastroClientes.excluirCliente()}">
                        <f:setPropertyActionListener target="#{jsfCadastroClientes.codigoCliente}" value="#{lista.codigo}" />     
                     </h:commandButton>
-                    
+      
                 </h:column>
 
             </h:dataTable>
+
+        </h:form>
+        
+        <h:form id = "formularioAlteracao">
+            
+            <h3>Alteracao de cliente</h3> 
+            
+            <h:outputText value="ID do cliente: "/>
+            <h:inputText value ="#{jsfCadastroClientes.codigoCliente}"/>
+
+            <h:outputText value="Nome do cliente: "/>
+            <h:inputText value ="#{jsfCadastroClientes.nome}"/>
+            
+            
+            <h:outputText value="Cidade: "/>
+            
+            <h:selectOneMenu value="#{jsfCadastroClientes.codigoCidade}">
+                <f:selectItems value="#{jsfCadastroClientes.cidades}" var="cidade" itemLabel="#{cidade.nome}" itemValue="#{cidade.codigo}"/>
+            </h:selectOneMenu>
+            
+            <br></br>
+
+            <h:commandButton value ="Alterar" action="#{jsfCadastroClientes.alterarCliente()}"/>
+            
+            <br></br>
+            <br></br>
 
         </h:form>
 

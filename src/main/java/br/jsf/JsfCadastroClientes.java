@@ -6,13 +6,13 @@ package br.jsf;
 
 import br.data.Cidade;
 import br.data.Cliente;
-import br.ejb.EJBCliente;
 import br.resources.JakartaEE9Resource;
 import br.rs.RestClient;
-import jakarta.ejb.EJB;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.application.FacesMessage;
 import jakarta.faces.component.html.HtmlDataTable;
+import jakarta.faces.context.FacesContext;
 import java.util.List;
 
 /**
@@ -23,8 +23,9 @@ import java.util.List;
 @RequestScoped
 public class JsfCadastroClientes {
    JakartaEE9Resource jak = new JakartaEE9Resource();
+   RestClient rs = new RestClient();
     public JsfCadastroClientes() {
-           
+           carregarListaCidades();
     }
    
     private String nome;
@@ -94,23 +95,55 @@ public class JsfCadastroClientes {
     }
 
     public List<Cidade> getCidades() {
-        RestClient rs = new RestClient();
-        cidades = rs.getCidades();
-        
-        rs.close();
         return cidades;
     }
 
     public void cadastrarCliente(){
         jak.cadastrarCliente(Integer.parseInt(codigoCidade), nome);
+        nome=null;
     }
     
     public void excluirCliente(){
         jak.deleteClientePorCodigo(Integer.parseInt(codigoCliente));
+        codigoCliente=null;
     }
     
     public void alterarCliente(){
-        jak.alterarCliente(0, 0, nome);
+        
+        List<Cliente> clientes = getClientes();
+        Boolean clienteEstaCadastrado=false;
+        try{
+        for(int i=0; i<clientes.size();i++){
+            if(clientes.get(i).getCodigo()==Integer.parseInt(codigoCliente)){
+                clienteEstaCadastrado = true;
+            }
+        }
+        if(clienteEstaCadastrado){
+            
+            if(!nome.equals("")){
+                jak.alterarCliente(Integer.parseInt(codigoCliente), Integer.parseInt(codigoCidade), nome);
+                codigoCidade=null;
+                nome=null;
+                codigoCliente=null;
+            }
+            else{
+                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nome não pode ser vazio" , "Message body");
+                FacesContext.getCurrentInstance().addMessage(null, message);
+            }
+        }
+        else{
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario não encontrado para o ID informado" , "Message body");
+                FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+        }
+        catch(NumberFormatException e){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "ID é composto por um campo inteiro" , "Message body");
+                FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+    }
+    
+    public void carregarListaCidades(){
+        cidades = rs.getCidades();
     }
 
 }
