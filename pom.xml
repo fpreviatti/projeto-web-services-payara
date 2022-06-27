@@ -105,7 +105,7 @@
   <configuration>
     <schemaVersion>F1</schemaVersion>
     <resourceGroup>microprofile</resourceGroup>
-    <appName>projeto-web-services</appName>
+    <appName>api-clientes-payara</appName>
     <pricingTier>F1</pricingTier>
     <region>japaneast</region>
     <runtime>
