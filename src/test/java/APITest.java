@@ -16,6 +16,7 @@ import org.json.JSONObject;
  */
 public class APITest {
     
+	/*
     @Test
     public void testCriaNovoCliente() throws JSONException {
         
@@ -61,5 +62,6 @@ public class APITest {
 		then().statusCode(204).
 		log().all();
     }
+    */
     
 }
