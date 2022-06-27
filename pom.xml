@@ -103,10 +103,10 @@
   <artifactId>azure-webapp-maven-plugin</artifactId>
   <version>1.9.1</version>
   <configuration>
-    <schemaVersion>V2</schemaVersion>
+    <schemaVersion>F1</schemaVersion>
     <resourceGroup>microprofile</resourceGroup>
     <appName>projeto-web-services</appName>
-    <pricingTier>P1v2</pricingTier>
+    <pricingTier>F1</pricingTier>
     <region>japaneast</region>
     <runtime>
       <os>windows</os>
