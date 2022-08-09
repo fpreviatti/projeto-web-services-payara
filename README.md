@@ -1,4 +1,4 @@
-# Projeto API para gestão de clientes.
+# Projeto API para gestão de clientes. Pós-Graduação: UTFPR - Disciplina: Web Services
 
 API de gestão de clientes em que para o cadastro de novos clientes é utilizada uma lista de cidades fornecida por outra API.
 
